@@ -11,3 +11,27 @@ class Provider(models.Model):
     class Meta:
         verbose_name_plural = "Paseadores"
         verbose_name = "Paseador"
+
+class Customer(models.Model):
+    first_name = models.CharField(max_length=128, verbose_name="Nombres")
+    last_name = models.CharField(max_length=128, verbose_name="Apellidos")
+    address = models.CharField(max_length=128, verbose_name="Dirección")
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}" # aparexcan los nombres de los customer
+
+    class Meta:
+        verbose_name_plural = "Clientes"
+        verbose_name = "Cliente"
+
+class Pet(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.RESTRICT) # Llave foránea
+    name = models.CharField(max_length=128)
+    age = models.CharField(max_length=64)
+    pedigree = models.CharField(max_length=128)
+    main_photo = models.ImageField(upload_to="pets/",
+                                   blank=True, null=True, )
+    
+    class Meta:
+        verbose_name_plural = "Mascotas"
+        verbose_name = "Mascota"
