@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dgqln@z!&l2$*du3g@!u12bj)5dp090h!!hzawvriw!^!1h&^6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False # false en la nube, para escritorio es True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -67,8 +67,10 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'admin_patitas.wsgi.app'
+if DEBUG: # cuando sea True
+    WSGI_APPLICATION = 'admin_patitas.wsgi.application'
+else:
+    WSGI_APPLICATION = 'admin_patitas.wsgi.app'
 
 
 # Database
@@ -76,6 +78,7 @@ WSGI_APPLICATION = 'admin_patitas.wsgi.app'
 if DEBUG:
     DATABASES = {
         'default': {
+            # 'ENGINE': 'django.db.backends.sqlite3',
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'patitas_db',
             'USER': 'postgres',
@@ -86,15 +89,15 @@ if DEBUG:
     }
 else:
     DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'neondb',
-                'USER': 'neondb_owner',
-                'PASSWORD': 'idxKpgte9qo2',
-                'HOST': 'ep-soft-bush-a59woyfe.us-east-2.aws.neon.tech',
-                'PORT': '5432' # de uso común
-            }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'neondb',
+            'USER': 'neondb_owner',
+            'PASSWORD': 'idxKpgte9qo2',
+            'HOST': 'ep-soft-bush-a59woyfe.us-east-2.aws.neon.tech',
+            'PORT': '5432' # de uso común
         }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
