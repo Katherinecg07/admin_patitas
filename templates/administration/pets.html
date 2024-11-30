@@ -3,19 +3,16 @@
 
 <section>
     <div class="card w-100">
-        <div class="card-body">
-            Paseadores
-            <a href="/providers?sort_by=first_name&dir=asc">Ordernar/Nombre</a>
-            <a href="/providers?sort_by=last_name&dir=asc">Ordernar/Apellido</a>
-        </div>
+        <div class="card-body">Mascotas</div>
         <table class="table table-striped table-bordered w-100">
             <tbody>
                 <!-- provs viene de views.py -->
-                {% for pr in providers_list %}
+                {% for pet in pets_list %}
                 <tr>
-                    <td>{{ pr.first_name }}</td>
-                    <td>{{ pr.last_name }}</td>
-                    <td>{{ pr.description }}</td>
+                    <td>{{ pet.name }}</td>
+                    <td>{{ pet.age }}</td>
+                    <td>{{ pet.pedigree }}</td>
+                    <td> <img src="{{ pet.main_photo.url }}" style="width: 64px;" /></td>
                     <td>
                         <a href="#" class="btn btn-primary">Ver más</a>
                     </td>
