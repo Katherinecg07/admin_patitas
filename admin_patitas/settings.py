@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import os
+import os  # <------------------cambios
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dgqln@z!&l2$*du3g@!u12bj)5dp090h!!hzawvriw!^!1h&^6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # false en la nube, para escritorio es True
+DEBUG = True # false en la nube, para escritorio es True  <------------ cambios
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*"] # <------------------------cambios
 
 
 # Application definition
@@ -70,13 +70,13 @@ TEMPLATES = [
 if DEBUG: # cuando sea True
     WSGI_APPLICATION = 'admin_patitas.wsgi.application'
 else:
-    WSGI_APPLICATION = 'admin_patitas.wsgi.app'
+    WSGI_APPLICATION = 'admin_patitas.wsgi.app'  # <-----------cambios
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 if DEBUG:
-    DATABASES = {
+    DATABASES = { # Base de datos de ordenador
         'default': {
             # 'ENGINE': 'django.db.backends.sqlite3',
             'ENGINE': 'django.db.backends.postgresql',
@@ -87,7 +87,7 @@ if DEBUG:
             'PORT': '5432' # de uso común
         }
     }
-else:
+else: # <--------------cambios ------ datos de pag Neon en la nube
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -129,7 +129,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-if DEBUG:
+if DEBUG: # <---------------------cambios
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'mediafiles'
 else:
@@ -152,7 +152,7 @@ else:
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
+STATICFILES_DIRS = [ # <-------------cambios
     BASE_DIR / "static"
 ]
 STATIC_ROOT = BASE_DIR/"staticfiles/static"
