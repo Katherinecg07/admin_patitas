@@ -82,7 +82,7 @@ if DEBUG:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'patitas_db',
             'USER': 'postgres',
-            'PASSWORD': '12345678',
+            'PASSWORD': '123456',
             'HOST': 'localhost',
             'PORT': '5432' # de uso común
         }
