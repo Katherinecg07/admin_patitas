@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib import messages
 from .models import Provider, Customer, Pet
+
 # Create your views here.
 def v_index(request):
     # return render (request, "layout.html")
@@ -32,6 +34,11 @@ def v_providers(request):
     return render(request, "administration/providers.html", context)
 
 def v_customers(request):
+     # en VALIDACION BACKEND--> solo los usuarios autenticados pueden 
+     # ingresar a la ruta de 'customers', si no se redirige a pagina principal
+    if not request.user.is_authenticated:
+        messages.error(request, "Lo sentimos esta acción no está permitida.")
+        return redirect("/")
     context = {
          "customers_list": Customer.objects.all() 
     }
